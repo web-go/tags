@@ -66,12 +66,16 @@ func divWrapper(opts tags.Options, fn func(opts tags.Options) tags.Body) *tags.T
 	div.Append(fn(opts))
 
 	if hasErrors {
-		for _, err := range errors {
-			div.Append(tags.New("div", tags.Options{
-				"class": "invalid-feedback help-block",
-				"body":  err,
-			}))
-		}
+		div.Append(tags.New("div", tags.Options{
+			"class": "invalid-feedback help-block",
+			"body":  errors[0],
+		}))
+// 		for _, err := range errors {
+// 			div.Append(tags.New("div", tags.Options{
+// 				"class": "invalid-feedback help-block",
+// 				"body":  err,
+// 			}))
+// 		}
 	}
 	return div
 }
